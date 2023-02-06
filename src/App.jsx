@@ -4,9 +4,6 @@ import Navigation from "./routes/navigation/navigation.component";
 import Authentication from "./routes/authentication/authentication.component";
 
 const App = () => {
-
-  
-
   const Shop = () => {
     return <h1>SHOP PAGE</h1>
   }
