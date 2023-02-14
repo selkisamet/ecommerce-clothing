@@ -48,7 +48,6 @@ const clearCartItem = (cartItems, cartItemToClear) => {
     ));
 }
 
-
 export const CartContext = createContext({
     isCartOpen: false,
     setIsCartOpen: () => { },
