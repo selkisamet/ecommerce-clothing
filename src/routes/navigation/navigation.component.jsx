@@ -7,10 +7,13 @@ import { UserContext } from "../../contexts/user.context";
 import { CartContext } from "../../contexts/cart.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import { NavigationContainer, LogoContainer, NavLinks, NavLink } from "./navigation.styles";
+import styled from "styled-components";
 
 const Navigation = () => {
     const { currentUser } = useContext(UserContext);
     const { isCartOpen } = useContext(CartContext);
+
+    console.log(currentUser);
 
 
     return (
@@ -24,6 +27,9 @@ const Navigation = () => {
                     <NavLink to="/shop">SHOP</NavLink>
                     {currentUser ? <NavLink as="span" onClick={signOutUser}>SIGN OUT</NavLink> : <NavLink to="/auth">SIGN IN</NavLink>}
                     <CardIcon />
+                    {currentUser &&
+                        <NameStyle>Samet SELKİ</NameStyle>
+                    }
                 </NavLinks>
                 {
                     isCartOpen && <CartDropdown />
@@ -36,3 +42,9 @@ const Navigation = () => {
 }
 
 export default Navigation;
+
+const NameStyle = styled.div`
+    background-color: gold;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+`;

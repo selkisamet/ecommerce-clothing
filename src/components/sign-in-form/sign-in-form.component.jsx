@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { signInWithGooglePopup, signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
-import Button, {BUTTON_TYPE_CLASSES} from "../button/button.component";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 import { SignInContainer, ButtonsContainer } from './sign-in-form.styles';
+import { useNavigate } from "react-router-dom";
 
 const defaultFormFields = {
     email: "",
@@ -11,6 +12,7 @@ const defaultFormFields = {
 
 const SignInForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
+    const navigate = useNavigate();
 
     const { email, password } = formFields;
 
@@ -28,6 +30,7 @@ const SignInForm = () => {
         try {
             await signInAuthUserWithEmailAndPassword(email, password);
             resetFormFields();
+            navigate("/");
         } catch (error) {
             switch (error.code) {
                 case "auth/user-not-found":
